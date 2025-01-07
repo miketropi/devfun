@@ -1,17 +1,18 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
-  language: 'en-us',
+  title: 'Devfun - Chia sẽ những kiến thức, tin tức technical',
+  author: 'Devfun Watcher',
+  headerTitle: 'Devfun',
+  description:
+    'Nơi những kiến thức lập trình web được chia sẻ một cách đơn giản, dễ hiểu nhất! Tại đây, chúng tôi dành trọn tâm huyết để chia sẽ nâng cao kỹ năng, hiểu sâu hơn về lập trình.',
+  language: 'vi-VN',
   theme: 'system', // system, dark or light
   siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
-  siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
+  siteRepo: 'https://github.com/miketropi/devfun',
+  siteLogo: `${process.env.BASE_PATH || ''}/static/images/devfun.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'address@yoursite.com',
+  email: 'mike.beplus@gmail.com',
   github: 'https://github.com',
   x: 'https://twitter.com/x',
   // twitter: 'https://twitter.com/Twitter',
@@ -22,7 +23,7 @@ const siteMetadata = {
   instagram: 'https://www.instagram.com',
   medium: 'https://medium.com',
   bluesky: 'https://bsky.app/',
-  locale: 'en-US',
+  locale: 'vi-VN',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
   analytics: {
@@ -81,7 +82,7 @@ const siteMetadata = {
       // example: https://giscus.app/themes/custom_example.css
       themeURL: '',
       // This corresponds to the `data-lang="en"` in giscus's configurations
-      lang: 'en',
+      lang: 'vi',
     },
   },
   search: {

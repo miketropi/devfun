@@ -5,6 +5,8 @@ import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
+import Image from './Image'
+import Logo2 from '@/data/devfun.svg'
 
 const Header = () => {
   let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10'
@@ -17,7 +19,9 @@ const Header = () => {
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="flex items-center justify-between">
           <div className="mr-3">
-            <Logo />
+            {/* <Logo /> */}
+            <Logo2 width={60} height={60} />
+            {/* <Image src={ `/${ Logo2 }` } alt="devfun" width={ 100 } height={ 100 } /> */}
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
             <div className="hidden h-6 text-2xl font-semibold sm:block">
