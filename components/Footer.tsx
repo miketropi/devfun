@@ -18,7 +18,7 @@ export default function Footer() {
           <Link href="/">{siteMetadata.title}</Link>
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          <Link href="/">Tailwind Nextjs Theme</Link>
+          Bản quyền nội dung thuộc <Link href="https://www.devfun.blog"><u>www.devfun.blog</u></Link>
         </div>
       </div>
     </footer>
