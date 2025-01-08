@@ -18,7 +18,7 @@ export default function Footer() {
           <Link href="/">{siteMetadata.title}</Link>
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          Bản quyền nội dung thuộc <Link href="https://www.devfun.blog"><u>www.devfun.blog</u></Link>
+          Bản quyền nội dung thuộc <Link className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" href="https://www.devfun.blog">www.devfun.blog</Link>
         </div>
       </div>
     </footer>
