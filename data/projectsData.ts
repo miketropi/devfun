@@ -7,21 +7,11 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
-  },
-  {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
-  },
+    title: 'Devfun',
+    description: `Fanpage Facebook, nơi những kiến thức lập trình web được chia sẻ một cách đơn giản, dễ hiểu nhất! Tại đây, chúng tôi dành trọn tâm huyết để chia sẽ nâng cao kỹ năng, hiểu sâu hơn về lập trình.`,
+    imgSrc: '/static/images/devfun-fanpage.jpg',
+    href: 'https://www.facebook.com/profile.php?id=100068020483283',
+  }
 ]
 
 export default projectsData
