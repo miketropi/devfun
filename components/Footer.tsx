@@ -15,10 +15,11 @@ export default function Footer() {
           <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
-          <Link href="/">{siteMetadata.title}</Link>
+          <Link href={ `/` }>{siteMetadata.title}</Link>
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          Bản quyền nội dung thuộc <Link className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" href="https://www.devfun.blog">www.devfun.blog</Link>
+          Bản quyền nội dung thuộc 
+          <Link className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" href={ `https://www.devfun.blog` }>{ `www.devfun.blog` }</Link>
         </div>
       </div>
     </footer>
