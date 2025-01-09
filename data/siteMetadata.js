@@ -10,7 +10,7 @@ const siteMetadata = {
   siteUrl: 'https://www.devfun.blog',
   siteRepo: 'https://github.com/miketropi/devfun',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/devfun.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/images/devfun-banner.jpg`,
   // mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'mike.beplus@gmail.com',
   // github: 'https://github.com',
