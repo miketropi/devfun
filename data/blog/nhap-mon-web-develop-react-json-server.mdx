@@ -1,0 +1,123 @@
+---
+title: 'Nhập môn Web Develop - React + JSON Server'
+date: '2025-01-09'
+tags: ['Nhập môn Web Develop']
+draft: false
+summary: '🚀 Bạn đang muốn trở thành Web Developer nhưng không biết bắt đầu từ đâu? Đừng lo! Lộ trình này sẽ giúp bạn từ con số 0 thành một lập trình viên web với những kỹ năng thực tế.'
+images: ['https://imagedelivery.net/DHQSVhB0h-nBXfvg51dO8Q/35e682ed-0105-4c8b-dad9-fc04c6efa000/public']
+authors: ['default']
+---
+
+## Giới thiệu 
+
+🚀 **Lộ trình trở thành Web Developer dành cho người mới bắt đầu!**
+
+Bạn đang muốn trở thành Web Developer nhưng không biết bắt đầu từ đâu?  
+Đừng lo! Lộ trình này sẽ giúp bạn từ con số 0 thành một lập trình viên web với những kỹ năng thực tế.  
+
+Cùng khám phá qua một **demo nhỏ** sử dụng **React** kết hợp với một **headless server** (JSON Server).  
+Demo này minh họa cách bạn xây dựng một ứng dụng đơn giản hiển thị dữ liệu từ backend.  
+Chỉ cần hiểu cơ bản, bạn sẽ thấy việc lập trình web thực sự dễ dàng và thú vị! 💻🔥  
+
+👉 **Hãy sẵn sàng bước vào thế giới lập trình nào!**
+
+---
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+## 🛠️ Demo: React + JSON Server  
+
+### 1. Cài đặt môi trường  
+Trước tiên, bạn cần cài đặt các công cụ cơ bản:  
+- **Node.js**: [Tải Node.js tại đây](https://nodejs.org/)  
+- **npm** hoặc **yarn** để quản lý package.  
+
+### 2. Cài đặt React  
+Chạy các lệnh sau:  
+```bash
+npx create-react-app react-headless-demo
+cd react-headless-demo
+```
+
+### 3. Cài đặt JSON Server (headless server)
+```bash
+npm install json-server --save-dev
+```
+
+### 4.Tạo dữ liệu JSON
+Tạo tệp `db.json` trong thư mục gốc với nội dung sau:
+```json:db.json
+{
+  "posts": [
+    { "id": 1, "title": "Hello World", "content": "This is my first post!" },
+    { "id": 2, "title": "Learning React", "content": "React is awesome!" }
+  ]
+}
+```
+
+### 5. Khởi chạy JSON Server
+```bash
+npx json-server --watch db.json --port 5000
+```
+Server sẽ chạy tại `http://localhost:5000/posts`.
+
+### 6.Tạo component React
+Mở file `src/App.js` và thay thế bằng đoạn mã sau:
+```javascript:src/App.js
+import React, { useState, useEffect } from "react";
+
+function App() {
+  const [posts, setPosts] = useState([]);
+
+  // Fetch dữ liệu từ JSON Server
+  useEffect(() => {
+    fetch("http://localhost:5000/posts")
+      .then((response) => response.json())
+      .then((data) => setPosts(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>📚 React + JSON Server Demo</h1>
+      {posts.length > 0 ? (
+        posts.map((post) => (
+          <div key={post.id} style={{ marginBottom: "20px" }}>
+            <h2>{post.title}</h2>
+            <p>{post.content}</p>
+          </div>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+}
+
+export default App;
+```
+
+### 7. Khởi chạy React
+```bash
+npm start
+```
+Mở trình duyệt tại `http://localhost:3000` để xem ứng dụng hiển thị danh sách bài viết từ server.
+
+---
+
+## 👉 Lộ trình từ demo này
+* Frontend Basics: Bắt đầu học HTML, CSS, JavaScript.
+* Frontend Framework: Học React để xây dựng giao diện người dùng.
+* Backend Basics: Hiểu về API, REST, và cách giao tiếp giữa frontend và backend.
+* Headless Server: Làm quen với JSON Server để hiểu cách backend hoạt động.
+* Full-Stack: Học thêm về Node.js, Express.js, hoặc một backend framework như Django, Laravel.
+* Triển khai: Học cách deploy ứng dụng lên các dịch vụ như Netlify, Vercel, hoặc Heroku.
+
+---
+
+## 💡 Mẹo dành cho người mới
+* Hãy tập trung vào xây dựng dự án nhỏ để áp dụng kiến thức thực tế.
+* Đừng cố học mọi thứ một lúc. Học từng phần và áp dụng ngay vào dự án.
+* Kiên trì và không ngại thử thách!
+
+👉 **Bạn đã sẵn sàng xây dựng sản phẩm đầu tiên của mình chưa? Bắt đầu ngay hôm nay và chia sẻ hành trình của bạn nhé!**

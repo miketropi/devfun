@@ -1,0 +1,150 @@
+---
+title: 'Nhập môn Web Develop - HTTP POST Request'
+date: '2025-01-09'
+tags: ['Nhập môn Web Develop']
+draft: false
+summary: '🚀 Tạo Ứng Dụng React + Headless Server với Tính Năng Thêm Dữ Liệu.'
+images: ['https://imagedelivery.net/DHQSVhB0h-nBXfvg51dO8Q/35e682ed-0105-4c8b-dad9-fc04c6efa000/public']
+authors: ['default']
+---
+
+## Giới thiệu 
+
+🚀 **Tạo Ứng Dụng React + Headless Server với Tính Năng Thêm Dữ Liệu**
+
+Trong demo này, chúng ta sẽ xây dựng một ứng dụng React với tính năng **thêm dữ liệu mới** vào server sử dụng **JSON Server**.  
+Đây là bước quan trọng để hiểu cách frontend giao tiếp với backend thông qua **HTTP POST request**.  
+
+---
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+## 🛠️ Demo: React + JSON Server (Thêm Dữ Liệu)
+
+### 1. Cài đặt môi trường  
+Sử dụng lại môi trường từ demo đầu tiên:
+- **React** đã được thiết lập.  
+- **JSON Server** vẫn sử dụng `db.json`.
+
+### 2. Cập nhật `db.json`  
+Sử dụng dữ liệu mẫu:
+```json:db.json
+{
+  "posts": [
+    { "id": 1, "title": "Hello World", "content": "This is my first post!" },
+    { "id": 2, "title": "Learning React", "content": "React is awesome!" }
+  ]
+}
+```
+
+Khởi chạy server:
+```bash
+npx json-server --watch db.json --port 5000
+```
+
+### 3. Tạo Form Thêm Dữ Liệu
+Mở file `src/App.js` và thay thế bằng đoạn mã sau:
+```javascript:src/App.js
+import React, { useState, useEffect } from "react";
+
+function App() {
+  const [posts, setPosts] = useState([]);
+  const [newPost, setNewPost] = useState({ title: "", content: "" });
+
+  // Fetch dữ liệu từ server
+  useEffect(() => {
+    fetch("http://localhost:5000/posts")
+      .then((response) => response.json())
+      .then((data) => setPosts(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  // Xử lý thêm bài viết mới
+  const handleAddPost = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:5000/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPost),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts([...posts, data]); // Cập nhật danh sách bài viết
+        setNewPost({ title: "", content: "" }); // Reset form
+      })
+      .catch((error) => console.error("Error adding post:", error));
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>📚 React + JSON Server Demo</h1>
+
+      {/* Hiển thị bài viết */}
+      {posts.map((post) => (
+        <div key={post.id} style={{ marginBottom: "20px" }}>
+          <h2>{post.title}</h2>
+          <p>{post.content}</p>
+        </div>
+      ))}
+
+      {/* Form thêm bài viết mới */}
+      <form onSubmit={handleAddPost} style={{ marginTop: "20px" }}>
+        <h3>Add New Post</h3>
+        <div>
+          <input
+            type="text"
+            placeholder="Title"
+            value={newPost.title}
+            onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+            style={{ width: "100%", marginBottom: "10px", padding: "10px" }}
+          />
+        </div>
+        <div>
+          <textarea
+            placeholder="Content"
+            value={newPost.content}
+            onChange={(e) =>
+              setNewPost({ ...newPost, content: e.target.value })
+            }
+            style={{ width: "100%", height: "100px", marginBottom: "10px", padding: "10px" }}
+          />
+        </div>
+        <button type="submit" style={{ padding: "10px 20px" }}>
+          Add Post
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+```
+
+---
+
+## 🌟 Chạy Ứng Dụng
+1. Khởi chạy JSON Server:
+```bash
+npx json-server --watch db.json --port 5000
+```
+2. Khởi chạy React:
+```bash
+npm start
+```
+3. Mở trình duyệt tại `http://localhost:3000`:
+    * Bạn sẽ thấy danh sách bài viết được hiển thị.
+    * Sử dụng form để thêm bài viết mới vào JSON Server.
+
+---
+
+## 💡 Lộ trình học từ demo này
+1. Hiểu cách sử dụng React Hooks (`useState`, `useEffect`) để quản lý dữ liệu.
+2. Làm quen với HTTP methods như `GET` và `POST`.
+3. Biết cách xây dựng form và xử lý dữ liệu người dùng nhập.
+4. Học cách cập nhật trạng thái React sau khi nhận phản hồi từ server.
+
+---
+
+👉 Bạn đã sẵn sàng tạo những ứng dụng thực tế hơn chưa? Bắt đầu ngay với những bài tập nhỏ và tiến xa hơn từng ngày nhé!
