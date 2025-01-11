@@ -1,0 +1,116 @@
+---
+title: 'TypeScript - Bước Khở Đầu Hoàn Hảo Cho Người Mới Bắt Đầu'
+date: '2025-01-11'
+tags: ['web technology', 'typescript']
+draft: false
+summary: '🚀 TypeScript là một ngôn ngữ lập trình mở rộng từ JavaScript, được tạo ra bởi Microsoft. Với TypeScript, bạn có thể thêm tính kiểm tra kiểu (static typing) khi viết JavaScript, giúp tảm soát tính đúng đắn khi runtime.'
+images: ['https://imagedelivery.net/DHQSVhB0h-nBXfvg51dO8Q/typescript_for_beginners_A2B3C4D5.png/public']
+authors: ['default']
+---
+
+## Giới thiệu
+
+🚀 **TypeScript là một ngôn ngữ lập trình mở rộng từ JavaScript**, được tạo ra bởi Microsoft. Với TypeScript, bạn có thể thêm tính kiểm tra kiểu (static typing) khi viết JavaScript, giúp tảm soát tính đúng đắn khi runtime.
+
+**TypeScript** biên dịch thẳng xuống JavaScript, nên bất cứ dự án nào dùng JavaScript đều có thể chuyển qua TypeScript một cách dễ dàng.
+
+---
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+## Vì Sao Nên Học TypeScript?
+
+1. **Tránh Lỗi**: TypeScript giúp bạn phát hiện lỗi ngay khi code, giảm nguy cơ bug runtime.
+2. **Dễ Bảo Trì**: Code có cấu trúc rõ ràng, dễ hiểu.
+3. **Hữu Ích Cho Teamwork**: Giúp đội nhóm hiểu được dữ liệu truyền qua lại trong dự án.
+
+## Bắt Đầu Với TypeScript
+
+Dưới đây là một ví dụ đơn giản giúp bạn hiểu TypeScript qua 3 bước:
+
+### 1: Khai Báo Biến
+
+```javascript
+let message: string = "Chào mừng đến với TypeScript!";
+console.log(message);
+```
+
+* Biến `message` được khai báo với kiểu dữ liệu string. Khi gán sai kiểu dữ liệu, TypeScript sẽ báo lỗi ngay khi code.
+
+### 2: Xây Dựng Hàm
+
+```javascript
+function addNumbers(a: number, b: number): number {
+  return a + b;
+}
+
+console.log(addNumbers(5, 10));
+```
+
+* Hàm `addNumbers` đòi hỏi tham số `a` và `b` là số (được khai báo với kiểu `number`). Kết quả trả về cũng là kiểu `number`.
+
+### 3: Sử Dụng Interface
+
+```javascript
+interface User {
+  id: number;
+  name: string;
+}
+
+const user: User = {
+  id: 1,
+  name: "Devfun"
+};
+
+console.log(user);
+```
+
+* `interface` giúp bạn xác định cấu trúc của một đối tượng.
+
+### 4: Sử Dụng Union Types
+
+```javascript
+function printId(id: number | string): void {
+  console.log("ID: ", id);
+}
+
+printId(101); // Hợp lệ
+printId("A123"); // Hợp lệ
+```
+
+* `Union Types` cho phép một tham số nhận nhiều kiểu dữ liệu (vd: `number` hoặc `string`).
+
+### 5: Class Trong TypeScript
+
+```javascript
+class Animal {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  makeSound(): void {
+    console.log(`${this.name} gâu gâu!`);
+  }
+}
+
+const dog = new Animal("Chó");
+dog.makeSound();
+```
+
+* `Class` trong TypeScript giúp xây dựng các đối tượng có cấu trúc và hành vi.
+
+---
+
+## Kết Luận
+
+Qua bài viết này, bạn đã làm quen với **TypeScript** và những tính năng nổi bật như khai báo kiểu dữ liệu (`data type`), `interface`, `union types`, và `class`.
+
+1. Luôn khai báo kiểu dữ liệu rõ ràng khi code.
+2. Sử dụng interface để tăng tính tổ chức.
+3. Đọc kỹ tài liệu TypeScript chính thức tại [TypeScript Documentation](https://www.typescriptlang.org/)
+
+---
+
+Chúc bạn thành công trên hành trình lập trình cùng **TypeScript**! Hẹn gặp lại trong những bài viết tiếp theo! 🙏
