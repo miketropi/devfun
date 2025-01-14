@@ -1,0 +1,137 @@
+---
+title: '5 Tips Xử Lý Bất Đồng Bộ Với TypeScript 🌟'
+date: '2025-01-14'
+tags: ['typescript']
+draft: false
+summary: 'TypeScript không chỉ cung cấp typing mạnh mẽ cho code đồng bộ mà còn hỗ trợ bạn xử lý bất đồng bộ một cách hiệu quả và ít lỗi.'
+images: ['https://imagedelivery.net/DHQSVhB0h-nBXfvg51dO8Q/async_await_typescript_83728.png/public']
+authors: ['default']
+---
+
+##  Giới thiệu
+
+Bất đồng bộ (**asynchronous**) là một phần quan trọng trong việc xây dựng các ứng dụng hiện đại, đặc biệt là khi làm việc với API, cơ sở dữ liệu, và các thao tác IO. **TypeScript** không chỉ cung cấp typing mạnh mẽ cho code đồng bộ mà còn hỗ trợ bạn xử lý bất đồng bộ một cách hiệu quả và ít lỗi. Trong bài viết này, chúng ta sẽ khám phá 5 tips giúp bạn xử lý bất đồng bộ tốt hơn với **TypeScript**. 🚀
+
+---
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+---
+
+## 1. Sử Dụng Async/Await Hiệu Quả ⏳
+
+**Async/Await** giúp bạn xử lý các thao tác bất đồng bộ dễ đọc và dễ bảo trì hơn so với việc sử dụng `callback` hoặc `.then`. **TypeScript** cung cấp typing cho Promise, giúp bạn đảm bảo rằng kết quả trả về được xử lý đúng.
+
+```javascript
+async function fetchData(url: string): Promise<string> {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Lỗi khi gọi API");
+  }
+  const data = await response.text();
+  return data;
+}
+
+fetchData("https://api.example.com")
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error));
+```
+
+## 2. Typed Promises: Đảm Bảo Tính Chặt Chẽ 🛠️
+
+Khi làm việc với `Promise`, bạn có thể khai báo kiểu dữ liệu mà Promise sẽ trả về để tránh nhầm lẫn.
+
+```javascript
+function delay(ms: number): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(`Đã chờ ${ms}ms`), ms);
+  });
+}
+
+async function run() {
+  const result: string = await delay(1000);
+  console.log(result);
+}
+
+run();
+```
+
+## 3. Parallel Execution Với Promise.all 🔗
+
+Khi cần thực thi nhiều tác vụ bất đồng bộ cùng lúc, `Promise.all` giúp bạn tối ưu hóa hiệu suất.
+
+```javascript
+async function fetchMultipleUrls(urls: string[]): Promise<string[]> {
+  const promises = urls.map(url => fetch(url).then(res => res.text()));
+  return Promise.all(promises);
+}
+
+const urls = ["https://api.example.com/1", "https://api.example.com/2"];
+fetchMultipleUrls(urls).then(data => console.log(data));
+```
+
+## 4. Xử Lý Lỗi Với Try/Catch và Typing 🚨
+
+Khi làm việc với **async/await**, việc xử lý lỗi rất quan trọng. Sử dụng **try/catch** kết hợp với kiểu dữ liệu giúp bạn kiểm soát các lỗi bất ngờ.
+
+```javascript
+async function safeFetch(url: string): Promise<string | null> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Lỗi từ server");
+    }
+    return await response.text();
+  } catch (error) {
+    console.error("Lỗi xảy ra:", error);
+    return null;
+  }
+}
+
+safeFetch("https://api.example.com").then(result => {
+  if (result) {
+    console.log("Dữ liệu:", result);
+  } else {
+    console.log("Không có dữ liệu trả về.");
+  }
+});
+```
+
+## 5. Custom Utility Types Cho Bất Đồng Bộ 🛡️
+
+Khi dự án phức tạp, bạn có thể tạo các loại `utility types` để đơn giản hóa việc làm việc với `Promise`.
+
+```javascript
+type AsyncReturnType<T> = T extends (...args: any[]) => Promise<infer R> ? R : never;
+
+async function getUser(): Promise<{ id: number; name: string }> {
+  return { id: 1, name: "Alice" };
+}
+
+type UserType = AsyncReturnType<typeof getUser>; // { id: number; name: string }
+
+async function printUser() {
+  const user: UserType = await getUser();
+  console.log(user.name);
+}
+
+printUser();
+```
+
+## Tổng kết 
+
+Những tips này không chỉ giúp code của bạn sạch hơn mà còn giảm thiểu rủi ro lỗi trong runtime. Hãy áp dụng ngay trong dự án của bạn nhé! 💪
+
+* ⏳ **Sử dụng async/await**: Đơn giản hóa luồng bất đồng bộ.
+
+* 🛠️ **Typed Promises**: Đảm bảo sự chặt chẽ và đáng tin cậy.
+
+* 🔗 **Promise.all**: Tăng hiệu suất khi thực hiện các tác vụ song song.
+
+* 🚨 **Try/Catch và Typing**: Xử lý lỗi hiệu quả và rõ ràng.
+
+* 🛡️ **Utility Types**: Tuỳ chỉnh type để làm việc dễ dàng hơn với Promise.
+
+---
+
+Cảm ơn bạn đã đọc bài viết này! Hy vọng nó hữu ích và đừng ngần ngại chia sẻ ý kiến hoặc câu hỏi của bạn trong phần bình luận. 🙏

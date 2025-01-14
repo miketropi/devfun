@@ -1,0 +1,122 @@
+---
+title: '5 Thủ Thuật Nâng Cao Giúp Tối Ưu Hoá Dự Án Thực Tế Với TypeScript 🌟'
+date: '2025-01-14'
+tags: ['typescript']
+draft: false
+summary: '🚀 TypeScript không chỉ là một ngôn ngữ typing; nó còn mang đến nhiều tính năng cao cấp giúp tối ưu hoá và tăng năng suất khi viết code.'
+images: ['https://imagedelivery.net/DHQSVhB0h-nBXfvg51dO8Q/typescript_tips_837263.png/public']
+authors: ['default']
+---
+
+## Giới thiệu
+
+**TypeScript**, với khả năng cung cấp typing tĩnh, giúp cho việc phát triển **JavaScript** trở nên dễ bảo trì và ít lỗi hơn. Tuy nhiên, TypeScript không chỉ là một ngôn ngữ typing; nó còn mang đến nhiều tính năng cao cấp giúp tối ưu hoá và tăng năng suất khi viết code. Trong bài viết này, chúng ta sẽ khám phá 5 thủ thuật nâng cao giúp bạn giải quyết các bài toán thực tế trong dự án. 🌐
+
+---
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+---
+
+## 1. Sử Dụng Conditional Types
+
+**Conditional Types** cho phép bạn tạo ra kiểu dựa trên một điều kiện logic. Điều này hữu ích trong các tình huống phức tạp như xác định kiểu API trả về theo tham số.
+
+```javascript
+type ApiResponse<T> = T extends "success" ? { data: string } : { error: string };
+
+function handleResponse<T extends "success" | "error">(status: T): ApiResponse<T> {
+  if (status === "success") {
+    return { data: "Thành công!" } as ApiResponse<T>;
+  } else {
+    return { error: "Có lỗi xảy ra." } as ApiResponse<T>;
+  }
+}
+
+const successResponse = handleResponse("success"); // { data: "Thành công!" }
+const errorResponse = handleResponse("error"); // { error: "Có lỗi xảy ra." }
+```
+
+## 2. Index Types
+
+**Index Types** cho phép truy vấn thuộc tính của một kiểu dữ liệu và thực sự rất có lí trong quản lý các object phức tạp.
+
+```javascript
+interface Config {
+  database: string;
+  port: number;
+}
+
+type ConfigKeys = keyof Config; // "database" | "port"
+
+function getConfigValue(key: ConfigKeys, config: Config): string | number {
+  return config[key];
+}
+
+const config: Config = { database: "my-db", port: 5432 };
+console.log(getConfigValue("database", config)); // "my-db"
+console.log(getConfigValue("port", config)); // 5432
+```
+
+## 3. Mapped Types
+
+**Mapped Types** có thể tự động sinh ra các kiểu khác dựa trên các thuộc tính tồn tại. Điều này hữu ích cho việc tối ưu hoá các model trong dự án.
+
+```javascript
+interface Config {
+  database: string;
+  port: number;
+}
+
+type ConfigKeys = keyof Config; // "database" | "port"
+
+function getConfigValue(key: ConfigKeys, config: Config): string | number {
+  return config[key];
+}
+
+const config: Config = { database: "my-db", port: 5432 };
+console.log(getConfigValue("database", config)); // "my-db"
+console.log(getConfigValue("port", config)); // 5432
+```
+
+## 4. Utility Types
+
+**Utility Types** như `Partial`, `Pick`, `Omit` giúp bạn tiết kiệm thời gian khi thao tác với kiểu dữ liệu.
+
+```javascript
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+}
+
+type ProductPreview = Pick<Product, "id" | "name">;
+const preview: ProductPreview = { id: "123", name: "Laptop" };
+
+function updateProduct(partialProduct: Partial<Product>): void {
+  console.log("Product updated:", partialProduct);
+}
+updateProduct({ id: "123", price: 1500 });
+```
+
+## 5. Template Literal Types
+
+**Template Literal Types** giúp tăng các biển thể typing trong trường hợp địa danh động.
+
+```javascript
+type ApiEndpoints = "getUser" | "createUser" | "deleteUser";
+type ApiPaths = `/api/${ApiEndpoints}`;
+
+const path: ApiPaths = "/api/getUser"; // Đúng
+// const invalidPath: ApiPaths = "/api/unknown"; // Error
+```
+
+---
+
+## Tổng Kết 📊
+
+Các tips như **conditional types**, **utility types** hay **mapped types**, **TypeScript** giúp bạn viết mã chặt chẽ hơn và giảm thiểu lỗi runtime. Hãy áp dụng những thủ thuật này vào dự án của bạn để nâng cao hiệu quả và trải nghiệm lập trình. 🎉
+
+---
+
+Cám ơn bạn đã đọc bài viết này! Hy vọng những kiến thức được chia sẻ sẽ mang lại nhiều giá trị cho bạn trong việc sử dụng TypeScript. 🙏
